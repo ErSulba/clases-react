@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro a React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      const greet = 'hola mundo!'
+      // para poder interpolar javascript dentro de JSX, debemos envolver nuestro codigo de JavaScript es llaves {}
+      const MyComponent = () => {
+        return <h1>{greet + ' ya se programar en react'}</h1>
+      }
+
+      const source =
+        'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1861&q=80'
+
+      // JSX puede renderizar otros JSX dentro de el
+      const AppRoot = () => (
+        <div>
+          <MyComponent />
+          <span> nose nada</span>
+          <img src='https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1861&q=80' />
+          <img src={source} />
+        </div>
+      )
+
+      const container = document.getElementById('root')
+      const root = ReactDOM.createRoot(container)
+      root.render(React.createElement(AppRoot))
+    </script>
+  </body>
+</html>

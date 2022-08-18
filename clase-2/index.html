@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro a React</title>
+  </head>
+  <body>
+    <h1>hola react</h1>
+    <div id="root"></div>
+    <div id="button-root"></div>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      // import React from 'react';
+      // import ReactDOM from 'react-dom';
+      const { createElement } = React
+
+      function MyComponent() {
+        // const h1 = document.createElement('h1')
+        // h1.textContent = 'hola desde react createElement'
+        return createElement(
+          'h2',
+          [],
+          ['hola desde react createElement', MyButtonWithJSX()]
+        )
+
+        // <h2>hola desde react create Element</>
+      }
+
+      function MyButtonWithJSX() {
+        // JSX
+        return <button className='button'>press me!!</button>
+      }
+
+      const container = document.getElementById('root')
+      const root = ReactDOM.createRoot(container)
+      root.render(createElement(MyComponent))
+
+      const buttonContainer = document.getElementById('button-root')
+      const buttonRoot = ReactDOM.createRoot(buttonContainer)
+      buttonRoot.render(createElement(MyButtonWithJSX))
+    </script>
+  </body>
+</html>
