@@ -1,17 +1,28 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [pokemonName, setPokemonName] = useState("")
   const [searchInput, setSearchInput] = useState("")
+  const [pokemonSprite, setPokemonSprite] = useState()
+  const [pokemonDataObject, setPokemonDataObject] = useState()
 
+  // this effect only works once when the component mounts
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/pikachu/`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        const { name } = data;
+        console.log(data);
+        // data = {
+        //   name,
+        //   sprites: {
+        //     front_default
+        //   }
+        // }
+        const { name, sprites: { front_default } } = data;
         setPokemonName(name);
+        setPokemonSprite(front_default);
       })
       .catch((err) => console.warn(err))
     return () => {
@@ -21,28 +32,15 @@ function App() {
 
   return (
     <section>
-      <form
-        action="get"
-        method="get"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("submit event received");
-          fetch(`https://pokeapi.co/api/v2/pokemon/${searchInput}`)
-            .then((res) => res.json())
-            .then((data) => {
-              setPokemonName(data.name);
-            })
-        }}
-      >
-        <input
-          type="text"
-          name="name"
-          value={searchInput}
-          placeholder="SEARCH..."
-          onChange={(e) => { setSearchInput(e.target.value) }}
-        />
-      </form>
+      <SearchBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        setPokemonName={setPokemonName}
+        setPokemonSprite={setPokemonSprite}
+      />
       <h1>Pokemon: {pokemonName}</h1>
+      <img src={pokemonSprite ? pokemonSprite : ''} alt="pokemon-sprite" />
+
     </section>
   );
 }
