@@ -1,0 +1,40 @@
+.body{
+margin: 0;
+}
+
+.main {
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+height: 100px;
+}
+
+.poke-logo{
+    width: 300px;
+}
+
+.searchBar {
+height: 95px;
+background-color: rgb(158, 27, 27);
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-around;
+}
+
+.PokemonData {
+width: 200px;
+display: flex;
+flex-direction: column;
+align-items: center;
+flex-wrap: nowrap;
+}
+
+.Stats{
+display: flex;
+flex-grow: 2;
+justify-content: space-around;
+}
+.StatsText p {
+    font-weight: bold;
+}
