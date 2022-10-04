@@ -1,51 +1,22 @@
+import { formatStatName } from '../utils'
+import Bar from './Bar'
 import './PokeStatsData.css'
 
 
-function formatStatName(stat) {
-    switch (stat) {
-        case "hp":
-            return "HP"
-
-        case "attack":
-            return "Attack"
-
-        case "defense":
-            return "Defense"
-
-        case "special-attack":
-            return "Sp. Atk"
-
-        case "special-defense":
-            return "Sp. Def"
-
-        case "speed":
-            return "Speed"
-
-        default:
-            return stat
-    }
-}
-
-const PokeStatsData = ({ stats }) => {
-
-    return (
-        <>
-            <div className='StatsText'>
-                {stats && stats.map(el => (
-                    <p>{formatStatName(el.stat.name)}:</p>
-                ))}
-            </div>
-            <div>
-                <span>
-                    {stats && stats.map((el) => {
-                        return (
-                            <p className='number' key={el.stat.name}>{`${el.base_stat}`} </p>
-                        )
-                    })}
-                </span>
-            </div>
-        </>
-    )
-}
+const PokeStatsData = ({ stats }) => (
+    <table>
+        <tbody>
+            {stats && stats.map((el) => (
+                <tr key={el.stat.name}>
+                    <th> {formatStatName(el.stat.name)} </th>
+                    <td style={{ width: 100, minWidth: "150px" }}>
+                        <Bar baseStat={el.base_stat} />
+                    </td>
+                    <td> {el.base_stat} </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+)
 
 export default PokeStatsData

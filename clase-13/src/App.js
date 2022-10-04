@@ -52,12 +52,12 @@ function App() {
           <PokeType types={pokemonDataObject.types} />
           <PokeAbilities abilities={pokemonDataObject.abilities} />
         </section>
-        <article className='Stats'>
+        <section className='Stats'>
           {
             // Aqui va la grafica
           }
           <PokeStatsData stats={pokemonDataObject.stats} />
-        </article>
+        </section>
 
       </main>}
     </div>
